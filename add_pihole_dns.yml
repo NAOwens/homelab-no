@@ -1,0 +1,10 @@
+---
+- name: Add PiHole DNS entry
+  hosts: "{{ survey_dns_svr }}"
+
+  tasks:
+    - name: Add the dns entry to the file /etc/pihole/custom.list
+      ansible.builtin.lineinfile:
+        path: /etc/pihole/custom.list
+        line: "{{ survey_dns_ip }} {{ survey_dns_name }}"
+        backup: true
